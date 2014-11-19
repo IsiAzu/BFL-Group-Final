@@ -75,6 +75,10 @@ var constellations = {
 
 var params = {
     autostart: true,
+/* uncomment these -and comment out fullscreen- if you don't want the instance of two to be fullscreen
+    width: null,
+    height: null
+    */
     fullscreen: true
 };
 var palette = [
