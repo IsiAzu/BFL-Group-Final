@@ -4,10 +4,6 @@ app.config(['$routeProvider', function ($routeProvider) {
 
 	$routeProvider.
 	when('/', {
-		templateUrl: 'main.html',
-		controller: 'MainCtrl'
-	}).
-	when('/ursa-major', {
 		templateUrl: 'ursa-major.html',
 		controller: 'MainCtrl'
 	}).
