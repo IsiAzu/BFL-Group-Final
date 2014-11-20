@@ -1,0 +1,27 @@
+body {
+	font-family:helvetica, arial;
+	background:rgb(35, 37, 59);
+	color:white;
+	font-size:13pt;
+}
+
+a {color:cyan;}
+a:hover {color:cyan !important;}
+
+ol.breadcrumb {
+	background:inherit;
+}
+
+h2 {
+	color:gold;
+}
+
+nav, .navbar {
+	background:linear-gradient(to bottom, rgb(35, 37, 59), black);
+	border:0;
+	font-size:7pt;
+}
+
+.navbar a {
+	color:white !important;
+}
