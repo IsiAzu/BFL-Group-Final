@@ -17,6 +17,7 @@
 var EarthBack = 0;
 var SunPos;
 var IntroStep = false;
+var lineRequest = false;
 
 function setup(){
 
@@ -84,6 +85,21 @@ if(SunPos >= 0.76 * height){
 ShowSunDim();
 
 }
+
+}
+
+
+if(lineRequest == true){
+
+stroke(255,35);
+strokeWeight(8);
+line(0.5*width,0.27*height,0.5*width,0.85*height);
+
+stroke(255,220,0,35);
+strokeWeight(8);
+rotate(-PI/7.8);
+translate(0, 0.25*height);
+line(0.3*width,0.27*height,0.3*width,0.85*height);
 
 }
 
@@ -349,10 +365,11 @@ function ToPage1(){
     SN2.style.backgroundColor="#555";
     SN3.style.backgroundColor="#555";
     SN4.style.backgroundColor="#555";
-    SN5.style.backgroundColor="#555";
-    SN6.style.backgroundColor="#555";
+
     
     RealEarth.style.webkitTransform = "rotate(0deg)";
+    $("#Seven").animate({height:360, width:270},1000);
+
     
 	if(SlideReady==1){SlideReady=0; setTimeout("SlideWait()",1200);}
     $("#MainTitle").animate({marginTop:0,opacity:1},1500);
@@ -362,6 +379,10 @@ function ToPage1(){
     $("#Viewer1").animate({top:-0.2*BrowserHeight,opacity:0},1000);
     $("#Viewer2").animate({top:-0.2*BrowserHeight,opacity:0},1000);
     $("#Seven").animate({top:-0.2*BrowserHeight,opacity:0},1000);
+    Seven.style.backgroundImage = "url('image/Seven.png')";
+    
+    IntroStep = true;
+    lineRequest = false;
 
 }
 
@@ -370,10 +391,10 @@ function ToPage2(){
     SN2.style.backgroundColor="#FFF";
     SN3.style.backgroundColor="#555";
     SN4.style.backgroundColor="#555";
-    SN5.style.backgroundColor="#555";
-    SN6.style.backgroundColor="#555";
+  
 
     RealEarth.style.webkitTransform = "rotate(0deg)";
+    $("#Seven").animate({height:360, width:270},1000);
 
 	if(SlideReady==1){SlideReady=0; setTimeout("SlideWait()",1200);}
     $("#MainTitle").animate({marginTop:-0.5*BrowserHeight},1500);
@@ -385,9 +406,11 @@ function ToPage2(){
     $("#Viewer1").animate({top:0.39*BrowserHeight,opacity:1},1000);
     $("#Viewer2").animate({top:0.65*BrowserHeight,opacity:1},1000);
     $("#Seven").animate({top:0.05*BrowserHeight,opacity:1},1000);
+    Seven.style.backgroundImage = "url('image/Seven.png')";
 
 
     IntroStep = true;
+    lineRequest = false;
 
 }
 
@@ -397,15 +420,21 @@ function ToPage3(){
     SN2.style.backgroundColor="#555";
     SN3.style.backgroundColor="#FFF";
     SN4.style.backgroundColor="#555";
-    SN5.style.backgroundColor="#555";
-    SN6.style.backgroundColor="#555";
+  
 
     RealEarth.style.webkitTransform = "rotate(-23deg)";
 
 	if(SlideReady==1){SlideReady=0; setTimeout("SlideWait()",1200);}
+    $("#RealEarth").animate({marginTop:-0.4*BrowserHeight, height:350, width:350},1200);
     $("#Viewer1").animate({opacity:0},800);
     $("#Viewer2").animate({opacity:0},800);
 	$("#Slider").animate({marginTop:-2*BrowserHeight},1000);
+    $("#Seven").animate({top:0.05*BrowserHeight,height:360, width:270},1000);
+    $("#Seven").animate({opacity:1},1000);
+    Seven.style.backgroundImage = "url('image/Seven.png')";
+
+    IntroStep = true;
+    lineRequest = true;
 
 }
 
@@ -414,14 +443,28 @@ function ToPage4(){
     SN2.style.backgroundColor="#555";
     SN3.style.backgroundColor="#555";
     SN4.style.backgroundColor="#FFF";
-    SN5.style.backgroundColor="#555";
-    SN6.style.backgroundColor="#555";
+   
 
+    RealEarthIn2.style.backgroundImage = "";
+    
+    RealEarth.style.webkitTransform = "rotate(-10deg)";
 	if(SlideReady==1){SlideReady=0; setTimeout("SlideWait()",1200);}
+    
+    $("#RealEarth").animate({marginTop:0, height:850, width:850},1100);
+    $("#Viewer1").animate({opacity:0},800);
+    $("#Viewer2").animate({opacity:0},800);
 	$("#Slider").animate({marginTop:-3*BrowserHeight},1000);
 
+    $("#Seven").animate({top:-0.15*BrowserHeight, height:960, width:640},1200);
+    Seven.style.backgroundImage = "url('image/SevenShine.png')";
+
+    IntroStep = true;
+    lineRequest = false;
+
+    Constellation.style.display = "block";
 }
 
+/*
 function ToPage5(){
     SN1.style.backgroundColor="#555";
     SN2.style.backgroundColor="#555";
@@ -447,6 +490,7 @@ function ToPage6(){
 	$("#Slider").animate({marginTop:-5*BrowserHeight},1000);
 
 }
+*/
 
 /*
 var SetBottom=0;
@@ -696,6 +740,35 @@ opacity: 0;
 -webkit-transform:rotate(-135deg);
 }
 
+h1{
+
+    color:#FFF;
+}
+
+h2{
+color:#FFF;
+
+}
+
+#Constellation{
+
+    position: fixed;
+    height: 75px;
+    width: 320px;
+    background-color: #FF9900;
+    text-align: center;
+    display: none;
+    right: 0px;
+    left: 0px;
+    margin: auto;
+    top: auto;
+    bottom: 40px;
+    z-index: 999999;
+    border-radius: 10px;
+    cursor: pointer;
+
+}
+
 
 </style>
 
@@ -723,6 +796,10 @@ opacity: 0;
     </div>
 </div>
 
+<div id="Constellation" onclick="window.open("http://www.w3school.com")">
+<h2>Find Constellation</h2>
+</div>
+
 
 <div id="Viewer1">
 </div>
@@ -744,8 +821,6 @@ opacity: 0;
 <div class="SideSign" id="SN2" onclick="ToPage2()"></div>
 <div class="SideSign" id="SN3" onclick="ToPage3()"></div>
 <div class="SideSign" id="SN4" onclick="ToPage4()"></div>
-<div class="SideSign" id="SN5" onclick="ToPage5()"></div>
-<div class="SideSign" id="SN6" onclick="ToPage6()"></div>
 </div>
 
 <div id="Slider">
@@ -757,26 +832,24 @@ opacity: 0;
 </div>
 
 <div class="Section" id="Page2" style="background-color:#555;">
-
+    
+    <h1>Location<h1>
 
 </div>
 
 
 <div class="Section" id="Page3" style="background-color:#DDD;">
 
+    <h1>Season<h1>
+
 </div>
 
 <div class="Section" id="Page4" style="background-color:#AAA;">
 
-</div>
-
-<div class="Section" id="Page5" style="background-color:#555;">
+    <h1>Brightness<h1>
 
 </div>
-
-<div class="Section" id="Page6" style="background-color:#DDD;">    
-
-</div>    
+ 
 
 </div>
 
